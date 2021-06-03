@@ -7,7 +7,7 @@ Features
 * Nodemon for hot-reloading
 * Docker
 
-# Run
+## Run
 
 ```bash
 $ docker compose up -d
