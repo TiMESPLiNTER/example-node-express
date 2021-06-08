@@ -1,5 +1,5 @@
 import CarRepository from "../repository/carRepository";
-import Pimple, { ServiceProvider } from "../pimple";
+import { Pimple, ServiceProvider } from '@timesplinter/pimple';
 
 export default class RepositoryServiceProvider implements ServiceProvider
 {

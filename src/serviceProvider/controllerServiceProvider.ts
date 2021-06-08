@@ -1,6 +1,6 @@
 import CreateCarController from '../controller/createCarController';
 import GetCarsController from '../controller/getCarsController';
-import Pimple, {ServiceProvider} from '../pimple';
+import { Pimple, ServiceProvider } from '@timesplinter/pimple';
 
 export default class ControllerServiceProvider implements ServiceProvider
 {

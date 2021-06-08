@@ -2,11 +2,9 @@ import 'dotenv/config';
 import cors from 'cors';
 import contentTypeMiddleware from './middleware/contentTypeMiddleware';
 import express from 'express';
-import Pimple from './pimple';
+import { Pimple } from '@timesplinter/pimple';
 import Car from './entity/car';
 import CarRepository from './repository/carRepository';
-import CreateCarController from './controller/createCarController';
-import GetCarsController from './controller/getCarsController';
 import ControllerServiceProvider from './serviceProvider/controllerServiceProvider';
 import RepositoryServiceProvider from './serviceProvider/repositoryServiceProvider';
 
