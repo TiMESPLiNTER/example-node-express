@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { plainToClass } from 'class-transformer';
 import Car from '../entity/car';
-import CarRepository from '../storage/carRepository';
+import CarRepository from '../repository/carRepository';
 import ControllerInterface from './controllerInterface';
 
 export default class CreateCarController implements ControllerInterface

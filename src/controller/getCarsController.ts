@@ -1,5 +1,5 @@
 import { classToPlain } from "class-transformer";
-import CarRepository from "../storage/carRepository";
+import CarRepository from "../repository/carRepository";
 import { Request, Response } from 'express';
 import ControllerInterface from "./controllerInterface";
 

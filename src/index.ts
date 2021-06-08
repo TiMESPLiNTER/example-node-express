@@ -2,16 +2,22 @@ import 'dotenv/config';
 import cors from 'cors';
 import contentTypeMiddleware from './middleware/contentTypeMiddleware';
 import express from 'express';
+import Pimple from './pimple';
 import Car from './entity/car';
-import CarRepository from './storage/carRepository';
-import CreateCarController from './controller/createCar';
-import GetCarsController from './controller/getCars';
+import CarRepository from './repository/carRepository';
+import CreateCarController from './controller/createCarController';
+import GetCarsController from './controller/getCarsController';
+import ControllerServiceProvider from './serviceProvider/controllerServiceProvider';
+import RepositoryServiceProvider from './serviceProvider/repositoryServiceProvider';
 
 const APP_PORT = process.env.PORT;
+
+const container = new Pimple();
 const app = express();
 
+container.register(new ControllerServiceProvider()).register(new RepositoryServiceProvider());
 
-let carRepository: CarRepository = new CarRepository();
+const carRepository: CarRepository = container.get('repository.car');
 
 carRepository.add(new Car('Aston Martin', 'Vengeance', 'me'));
 
@@ -21,8 +27,8 @@ app.use(contentTypeMiddleware)
 app.use(express.json())
 
 // Routes
-app.get('/car', (req, res) => (new GetCarsController(carRepository)).execute(req, res));
-app.post('/car', (req, res) => (new CreateCarController(carRepository)).execute(req, res));
+app.get('/car', (req, res) => container.get('controller.getCars').execute(req, res));
+app.post('/car', (req, res) => container.get('controller.createCar').execute(req, res));
 
 app.listen(APP_PORT, () =>
     console.log(`Example app listening on port ${APP_PORT}!`),
