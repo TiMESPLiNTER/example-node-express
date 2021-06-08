@@ -2,7 +2,7 @@
   "main": "dist/index.js",
   "keywords": [],
   "dependencies": {
-    "@timesplinter/pimple": "^1.0.3",
+    "@timesplinter/pimple": "^1.1.1",
     "class-transformer": "^0.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

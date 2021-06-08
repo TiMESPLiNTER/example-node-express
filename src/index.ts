@@ -20,9 +20,9 @@ const carRepository: CarRepository = container.get('repository.car');
 carRepository.add(new Car('Aston Martin', 'Vengeance', 'me'));
 
 // Middlewares
-app.use(cors())
-app.use(contentTypeMiddleware)
-app.use(express.json())
+app.use(cors());
+app.use(contentTypeMiddleware);
+app.use(express.json());
 
 // Routes
 app.get('/car', (req, res) => container.get('controller.getCars').execute(req, res));
