@@ -17,8 +17,6 @@ export default class GetCarsController implements ControllerInterface
 
     public execute(req: Request, res: Response): void
     {
-        res.setHeader('Content-Type', 'application/json')
-    
-        res.send(JSON.stringify(this.serializer.transform(this.carRepository.getAll())))
+        res.json(this.serializer.transform(this.carRepository.getAll()));
     }
 }
