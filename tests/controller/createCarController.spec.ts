@@ -3,6 +3,7 @@ import { mock } from 'jest-mock-extended';
 import CreateCarController from '../../src/controller/createCarController';
 import Car from '../../src/entity/car';
 import CarRepository from '../../src/repository/carRepository';
+import ClassToPlainSerializer from '../../src/serialization/classToPlainSerializer';
 import PlainToClassSerializer from '../../src/serialization/plainToClassSerializer';
 
 describe('createCarController', () => {
@@ -17,6 +18,9 @@ describe('createCarController', () => {
         const mockPlainToClassSerializer = mock<PlainToClassSerializer>();
         mockPlainToClassSerializer.transform.calledWith(Car, requestBody).mockReturnValue(car);
 
+        const mockClassToPlainSerializer = mock<ClassToPlainSerializer>();
+        mockClassToPlainSerializer.transform.calledWith(car).mockReturnValue(requestBody);
+
         const mockCarRepository = mock<CarRepository>();
         mockCarRepository.add.calledWith(car);
 
@@ -24,9 +28,14 @@ describe('createCarController', () => {
         mockRequest.body = requestBody;
 
         const mockResponse = mock<Response>();
-        mockResponse.sendStatus.calledWith(201);
+        mockResponse.status.calledWith(201).mockReturnValue(mockResponse);
+        mockResponse.json.calledWith(requestBody).mockReturnValue(mockResponse);
 
-        const controller = new CreateCarController(mockCarRepository, mockPlainToClassSerializer);
+        const controller = new CreateCarController(
+            mockCarRepository, 
+            mockPlainToClassSerializer, 
+            mockClassToPlainSerializer
+        );
 
         controller.execute(mockRequest, mockResponse);
 

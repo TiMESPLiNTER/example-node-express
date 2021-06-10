@@ -9,6 +9,7 @@ export default class ControllerServiceProvider implements ServiceProvider
             return new CreateCarController(
                 container.get('repository.car'), 
                 container.get('serializer.plainToClass'),
+                container.get('serializer.classToPlain'),
             );
         });
         

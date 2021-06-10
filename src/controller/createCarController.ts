@@ -3,29 +3,33 @@ import Car from '../entity/car';
 import CarRepository from '../repository/carRepository';
 import ControllerInterface from './controllerInterface';
 import PlainToClassSerializer from '../serialization/plainToClassSerializer';
+import ClassToPlainSerializer from '../serialization/classToPlainSerializer';
 
 export default class CreateCarController implements ControllerInterface
 {
     private carRepository: CarRepository;
 
-    private plainToClassSeralizer: PlainToClassSerializer;
+    private plainToClassSerializer: PlainToClassSerializer;
 
-    constructor(carRepository: CarRepository, plainToClassSeralizer: PlainToClassSerializer)
+    private classToPlainSerializer: ClassToPlainSerializer;
+
+    constructor(carRepository: CarRepository, plainToClassSerializer: PlainToClassSerializer, classToPlainSerializer: ClassToPlainSerializer)
     {
         this.carRepository = carRepository;
-        this.plainToClassSeralizer = plainToClassSeralizer;
+        this.plainToClassSerializer = plainToClassSerializer;
+        this.classToPlainSerializer = classToPlainSerializer;
     }
 
     public execute(req: Request, res: Response): void 
     {
         console.log(req.body)
-        const car = this.plainToClassSeralizer.transform(Car, req.body)
+        const car = this.plainToClassSerializer.transform(Car, req.body)
 
         console.log(car);
 
         this.carRepository.add(car);
         console.log(`Added car ${car.getMaker()} ${car.getModel()} to the list`)
 
-        res.sendStatus(201);
+        res.status(201).json(this.classToPlainSerializer.transform(car));
     }
 }
