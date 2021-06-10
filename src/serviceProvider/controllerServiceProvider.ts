@@ -6,11 +6,17 @@ export default class ControllerServiceProvider implements ServiceProvider
 {
     register(container: Pimple): void {
         container.set('controller.createCar', (container: Container) => {
-            return new CreateCarController(container.get('repository.car'));
+            return new CreateCarController(
+                container.get('repository.car'), 
+                container.get('serializer.plainToClass'),
+            );
         });
         
         container.set('controller.getCars', (container: Container) => {
-            return new GetCarsController(container.get('repository.car'));
+            return new GetCarsController(
+                container.get('repository.car'), 
+                container.get('serializer.classToPlain'),
+            );
         });
     }
 }

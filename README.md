@@ -13,7 +13,7 @@ Features
 $ docker compose up -d
 $ docker compose node bash
 $ npm install
-$ npm start
+$ npm run dev
 ```
 
 The service should be reachable under http://localhost:3000.

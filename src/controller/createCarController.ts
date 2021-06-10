@@ -1,22 +1,25 @@
 import { Request, Response } from 'express';
-import { plainToClass } from 'class-transformer';
 import Car from '../entity/car';
 import CarRepository from '../repository/carRepository';
 import ControllerInterface from './controllerInterface';
+import PlainToClassSerializer from '../serialization/plainToClassSerializer';
 
 export default class CreateCarController implements ControllerInterface
 {
     private carRepository: CarRepository;
 
-    constructor(carRepository: CarRepository)
+    private plainToClassSeralizer: PlainToClassSerializer;
+
+    constructor(carRepository: CarRepository, plainToClassSeralizer: PlainToClassSerializer)
     {
         this.carRepository = carRepository;
+        this.plainToClassSeralizer = plainToClassSeralizer;
     }
 
     public execute(req: Request, res: Response): void 
     {
         console.log(req.body)
-        const car = plainToClass(Car, req.body/*, { excludeExtraneousValues: true }*/)
+        const car = this.plainToClassSeralizer.transform(Car, req.body)
 
         console.log(car);
 
