@@ -19,7 +19,10 @@
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "babel-jest": "^27.0.2",
+    "eslint": "^7.28.0",
     "jest": "^27.0.4",
     "jest-mock-extended": "^1.0.15",
     "nodemon": "^2.0.7",
@@ -30,6 +33,7 @@
     "compile": "tsc && node dist/index.js",
     "dev": "nodemon",
     "test": "jest",
-    "coverage": "jest --collect-coverage"
+    "coverage": "jest --collect-coverage",
+    "lint": "eslint . --ext .ts"
   }
 }

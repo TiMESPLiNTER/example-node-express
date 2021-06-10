@@ -1,22 +1,24 @@
-import { classToPlain } from "class-transformer";
 import CarRepository from "../repository/carRepository";
 import { Request, Response } from 'express';
 import ControllerInterface from "./controllerInterface";
-import ClassToPlainSerialzer from "../serialization/classToPlainSerializer";
+import ClassToPlainSerializer from "../serialization/classToPlainSerializer";
 
 export default class GetCarsController implements ControllerInterface
 {
     private carRepository: CarRepository;
 
-    constructor(carRepository: CarRepository, serializer: ClassToPlainSerialzer)
+    private serializer: ClassToPlainSerializer;
+
+    constructor(carRepository: CarRepository, serializer: ClassToPlainSerializer)
     {
         this.carRepository = carRepository;
+        this.serializer = serializer;
     }
 
     public execute(req: Request, res: Response): void
     {
         res.setHeader('Content-Type', 'application/json')
     
-        res.send(JSON.stringify(classToPlain(this.carRepository.getAll())))
+        res.send(JSON.stringify(this.serializer.transform(this.carRepository.getAll())))
     }
 }

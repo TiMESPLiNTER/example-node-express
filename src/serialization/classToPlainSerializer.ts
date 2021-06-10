@@ -9,8 +9,8 @@ export default class ClassToPlainSerializer
         this.options = options;
     }
 
-    public transformFromClass<T>(object: T): Record<string, any>
+    public transform<T, V>(object: T): V
     {
-        return classToPlain(object, this.options);
+        return classToPlain(object, this.options) as V;
     }
 }
