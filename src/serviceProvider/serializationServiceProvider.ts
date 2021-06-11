@@ -1,5 +1,5 @@
 import { Pimple, ServiceProvider } from "@timesplinter/pimple";
-import ClassToPlainSerialzer from "../serialization/classToPlainSerializer";
+import ClassToPlainSerializer from "../serialization/classToPlainSerializer";
 import PlainToClassSerializer from "../serialization/plainToClassSerializer";
 
 export default class SerializationServiceProvider implements ServiceProvider
@@ -10,7 +10,7 @@ export default class SerializationServiceProvider implements ServiceProvider
         });
 
         container.set('serializer.classToPlain', () => {
-            return new ClassToPlainSerialzer();
+            return new ClassToPlainSerializer();
         });
     }
 }

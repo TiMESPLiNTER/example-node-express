@@ -8,6 +8,8 @@ import CarRepository from './repository/carRepository';
 import ControllerServiceProvider from './serviceProvider/controllerServiceProvider';
 import RepositoryServiceProvider from './serviceProvider/repositoryServiceProvider';
 import SerializationServiceProvider from './serviceProvider/serializationServiceProvider';
+import FactoryServiceProvider from './serviceProvider/factoryServiceProvider';
+import UuidFactory from './factory/uuidFactory';
 
 const APP_PORT = process.env.PORT;
 
@@ -18,11 +20,13 @@ container
     .register(new ControllerServiceProvider())
     .register(new RepositoryServiceProvider())
     .register(new SerializationServiceProvider())
+    .register(new FactoryServiceProvider())
 ;
 
 const carRepository: CarRepository = container.get('repository.car');
+const uuidFactory: UuidFactory = container.get('factory.uuid');
 
-carRepository.add(new Car('Aston Martin', 'Vengeance', 'me'));
+carRepository.add(new Car(uuidFactory.create(), 'Aston Martin', 'Vengeance', 'me'));
 
 // Middlewares
 app

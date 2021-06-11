@@ -10,6 +10,7 @@ export default class ControllerServiceProvider implements ServiceProvider
                 container.get('repository.car'), 
                 container.get('serializer.plainToClass'),
                 container.get('serializer.classToPlain'),
+                container.get('factory.uuid'),
             );
         });
         
