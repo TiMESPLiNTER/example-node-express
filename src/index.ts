@@ -10,6 +10,8 @@ import RepositoryServiceProvider from './serviceProvider/repositoryServiceProvid
 import SerializationServiceProvider from './serviceProvider/serializationServiceProvider';
 import FactoryServiceProvider from './serviceProvider/factoryServiceProvider';
 import UuidFactory from './factory/uuidFactory';
+import GetCarsController from "./controller/getCarsController";
+import CreateCarController from "./controller/createCarController";
 
 const APP_PORT = process.env.PORT;
 
@@ -23,7 +25,9 @@ container
     .register(new FactoryServiceProvider())
 ;
 
+// eslint-disable-next-line
 const carRepository: CarRepository = container.get('repository.car');
+// eslint-disable-next-line
 const uuidFactory: UuidFactory = container.get('factory.uuid');
 
 carRepository.add(new Car(uuidFactory.create(), 'Aston Martin', 'Vengeance', 'me'));
@@ -36,8 +40,16 @@ app
 ;
 
 // Routes
-app.get('/car', (req, res) => container.get('controller.getCars').execute(req, res));
-app.post('/car', (req, res) => container.get('controller.createCar').execute(req, res));
+app.get('/car', (req, res) => {
+    // eslint-disable-next-line
+    const controller: GetCarsController = container.get('controller.getCars');
+    return controller.execute(req, res);
+});
+app.post('/car', (req, res) => {
+    // eslint-disable-next-line
+    const controller: CreateCarController = container.get('controller.createCar')
+    return controller.execute(req, res)
+});
 
 app.listen(APP_PORT, () =>
     console.log(`Example app listening on port ${APP_PORT}!`),

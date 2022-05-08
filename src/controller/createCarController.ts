@@ -16,9 +16,9 @@ export default class CreateCarController implements ControllerInterface
 
     private uuidFactory: UuidFactory;
 
-    constructor(
-        carRepository: CarRepository, 
-        plainToClassSerializer: PlainToClassSerializer, 
+    public constructor(
+        carRepository: CarRepository,
+        plainToClassSerializer: PlainToClassSerializer,
         classToPlainSerializer: ClassToPlainSerializer,
         uuidFactory: UuidFactory
     ) {
@@ -28,7 +28,7 @@ export default class CreateCarController implements ControllerInterface
         this.uuidFactory = uuidFactory;
     }
 
-    public execute(req: Request, res: Response): void 
+    public execute(req: Request, res: Response): void
     {
         console.log(req.body);
 
@@ -40,7 +40,7 @@ export default class CreateCarController implements ControllerInterface
         console.log(car);
 
         this.carRepository.add(car);
-        
+
         console.log(`Added car ${car.getMaker()} ${car.getModel()} to the list`);
 
         res.status(201).json(this.classToPlainSerializer.transform(car));

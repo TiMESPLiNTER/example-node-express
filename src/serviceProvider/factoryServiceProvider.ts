@@ -3,7 +3,7 @@ import UuidFactory from "../factory/uuidFactory";
 
 export default class FactoryServiceProvider implements ServiceProvider
 {
-    register(container: Pimple): void {
+    public register(container: Pimple): void {
         container.set('factory.uuid', () => {
             return new UuidFactory();
         });

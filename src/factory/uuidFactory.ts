@@ -4,6 +4,6 @@ export default class UuidFactory
 {
     public create(): string
     {
-        return uuidv4(); 
+        return uuidv4();
     }
 }

@@ -1,21 +1,16 @@
-import { ClassConstructor, ClassTransformOptions, plainToClass, plainToClassFromExist } from 'class-transformer';
+import { ClassConstructor, ClassTransformOptions, plainToInstance } from 'class-transformer';
 
 export default class PlainToClassSerializer
 {
-    private options?: ClassTransformOptions;
+    private readonly options?: ClassTransformOptions;
 
-    constructor(options?: ClassTransformOptions)
+    public constructor(options?: ClassTransformOptions)
     {
         this.options = options;
     }
 
     public transform<T, V>(cls: ClassConstructor<T>, plain: V): T
     {
-        return plainToClass(cls, plain, this.options);
-    }
-
-    public transformFromExisting<T, V>(clsObject: T, plain: V): T
-    {
-        return plainToClassFromExist(clsObject, plain, this.options);
+        return plainToInstance(cls, plain, this.options);
     }
 }

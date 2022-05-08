@@ -4,17 +4,17 @@ import { Exclude, Expose } from 'class-transformer';
 export default class Car
 {
     @Expose()
-    private id: string;
+    private readonly id: string;
 
     @Expose()
-    private maker: string;
+    private readonly maker: string;
 
     @Expose()
-    private model: string;
+    private readonly model: string;
 
-    private owner: string | null;
+    private readonly owner: string | null;
 
-    constructor(id: string, maker: string, model: string, owner: string | null)
+    public constructor(id: string, maker: string, model: string, owner: string | null)
     {
         this.id = id;
         this.maker = maker;

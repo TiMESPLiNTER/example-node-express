@@ -1,12 +1,13 @@
 {
   "main": "dist/index.js",
   "keywords": [],
+  "license": "LGPL-3.0-only",
   "dependencies": {
     "@timesplinter/pimple": "^1.1.1",
-    "class-transformer": "^0.4.0",
+    "class-transformer": "^0.5.1",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
     "reflect-metadata": "^0.1.13",
     "uuid": "^8.3.2"
   },
@@ -21,10 +22,13 @@
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.1",
     "@types/uuid": "^8.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
     "babel-jest": "^27.0.2",
     "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsdoc": "^39.2.9",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "jest": "^27.0.4",
     "jest-mock-extended": "^1.0.15",
     "nodemon": "^2.0.7",
@@ -36,6 +40,6 @@
     "dev": "nodemon",
     "test": "jest",
     "coverage": "jest --collect-coverage",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint -c .eslintrc.js --ext .ts ."
   }
 }

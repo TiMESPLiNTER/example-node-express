@@ -9,7 +9,7 @@ export default class GetCarsController implements ControllerInterface
 
     private serializer: ClassToPlainSerializer;
 
-    constructor(carRepository: CarRepository, serializer: ClassToPlainSerializer)
+    public constructor(carRepository: CarRepository, serializer: ClassToPlainSerializer)
     {
         this.carRepository = carRepository;
         this.serializer = serializer;

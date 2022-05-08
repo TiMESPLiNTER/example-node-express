@@ -1,16 +1,16 @@
-import { classToPlain, ClassTransformOptions } from "class-transformer";
+import { instanceToPlain, ClassTransformOptions } from "class-transformer";
 
 export default class ClassToPlainSerializer
 {
-    private options?: ClassTransformOptions;
+    private readonly options?: ClassTransformOptions;
 
-    constructor(options?: ClassTransformOptions)
+    public constructor(options?: ClassTransformOptions)
     {
         this.options = options;
     }
 
     public transform<T, V>(object: T): V
     {
-        return classToPlain(object, this.options) as V;
+        return instanceToPlain(object, this.options) as V;
     }
 }

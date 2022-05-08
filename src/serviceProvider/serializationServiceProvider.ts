@@ -4,7 +4,7 @@ import PlainToClassSerializer from "../serialization/plainToClassSerializer";
 
 export default class SerializationServiceProvider implements ServiceProvider
 {
-    register(container: Pimple): void {
+    public register(container: Pimple): void {
         container.set('serializer.plainToClass', () => {
             return new PlainToClassSerializer({ excludeExtraneousValues: true });
         });
